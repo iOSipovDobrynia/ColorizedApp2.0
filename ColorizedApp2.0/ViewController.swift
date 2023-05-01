@@ -20,9 +20,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        rgbView.layer.cornerRadius = 10
+        updateColor(of: rgbView)
+        redValueLabel.text = round(redSlider.value).formatted()
+        greenValueLabel.text = round(greenSlider.value).formatted()
+        blueValueLabel.text = round(blueSlider.value).formatted()
     }
-
-    // MARK: privat methods
+    
+    // MARK: IBActions
+    @IBAction func redSliderAction() {
+        updateColor(of: rgbView)
+        redValueLabel.text = round(redSlider.value).formatted()
+    }
+    
+    @IBAction func greenSliderAction() {
+        updateColor(of: rgbView)
+        greenValueLabel.text = round(greenSlider.value).formatted()
+    }
+    
+    @IBAction func blueSliderAction() {
+        updateColor(of: rgbView)
+        blueValueLabel.text = round(blueSlider.value).formatted()
+    }
+    
+    // MARK: private methods
     private func updateColor(of view: UIView) {
         let red = CGFloat(redSlider.value) / 255
         let green = CGFloat(greenSlider.value) / 255
