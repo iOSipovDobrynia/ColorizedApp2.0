@@ -9,11 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: IBOutlets
+    @IBOutlet var rgbView: UIView!
+    @IBOutlet var redValueLabel: UILabel!
+    @IBOutlet var greenValueLabel: UILabel!
+    @IBOutlet var blueValueLabel: UILabel!
+    @IBOutlet var redSlider: UISlider!
+    @IBOutlet var greenSlider: UISlider!
+    @IBOutlet var blueSlider: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    // MARK: privat methods
+    private func updateColor(of view: UIView) {
+        let red = CGFloat(redSlider.value) / 255
+        let green = CGFloat(greenSlider.value) / 255
+        let blue = CGFloat(blueSlider.value) / 255
+        view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+    }
 
 }
 
