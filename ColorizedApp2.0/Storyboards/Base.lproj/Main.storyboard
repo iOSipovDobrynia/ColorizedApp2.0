@@ -21,7 +21,6 @@
                     <navigationItem key="navigationItem" id="GDU-lf-NPj">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="slider.horizontal.3" catalog="system" id="zcr-KP-v0H">
                             <connections>
-                                <action selector="editButtonPressed:" destination="iih-ge-FXV" id="Cqr-fB-Rwa"/>
                                 <segue destination="BYZ-38-t0r" kind="presentation" identifier="showSettings" modalPresentationStyle="fullScreen" id="QxU-Y3-vbG"/>
                             </connections>
                         </barButtonItem>

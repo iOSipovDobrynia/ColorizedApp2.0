@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Public prop
     var color: UIColor!
+    var delegate: SettingsViewControllerDelegate!
     
     // MARK: - Override methods
     override func viewDidLoad() {
@@ -52,6 +53,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
+        delegate.setNewColor(for: rgbView)
         dismiss(animated: true)
     }
     

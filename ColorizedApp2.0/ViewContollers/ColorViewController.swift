@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate {
+    func setNewColor(for view: UIView)
+}
+
 class ColorViewController: UIViewController {
     
     // MARK: - Public properties
@@ -28,13 +32,15 @@ class ColorViewController: UIViewController {
             return
         }
         settingsVC.color = selectedColor
+        settingsVC.delegate = self
     }
-    
-//    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-//        guard let color = view.backgroundColor else {
-//            return
-//        }
-//        selectedColor = color
-//        performSegue(withIdentifier: "showSettings", sender: nil)
-//    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+extension ColorViewController: SettingsViewControllerDelegate {
+    func setNewColor(for view: UIView) {
+        guard let newColor = view.backgroundColor else { return }
+        self.view.backgroundColor = newColor
+        selectedColor = newColor
+    }
 }
