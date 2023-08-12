@@ -21,7 +21,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet var blueSlider: UISlider!
     
     // MARK: - Public prop
-    var color: UIColor!
+    var sliderValues: (red: Float, green: Float, blue: Float)!
+    
     var delegate: SettingsViewControllerDelegate!
     
     // MARK: - Override methods
@@ -29,10 +30,9 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         rgbView.layer.cornerRadius = 10
-        rgbView.backgroundColor = color
-        
-//        updateColor(of: rgbView)
-        setValues()
+        setSliderValues()
+        setLabels()
+        updateColor(of: rgbView)
         
     }
     
@@ -53,7 +53,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        delegate.setNewColor(for: rgbView)
+        delegate.setNewColor(with: (redSlider.value, greenSlider.value, blueSlider.value))
         dismiss(animated: true)
     }
     
@@ -65,10 +65,16 @@ class SettingsViewController: UIViewController {
         view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
     
-    private func setValues() {
+    private func setLabels() {
         redValueLabel.text = round(redSlider.value).formatted()
         greenValueLabel.text = round(greenSlider.value).formatted()
         blueValueLabel.text = round(blueSlider.value).formatted()
+    }
+    
+    private func setSliderValues() {
+        redSlider.setValue(sliderValues.red, animated: false)
+        greenSlider.setValue(sliderValues.green, animated: false)
+        blueSlider.setValue(sliderValues.blue, animated: false)
     }
 }
 
