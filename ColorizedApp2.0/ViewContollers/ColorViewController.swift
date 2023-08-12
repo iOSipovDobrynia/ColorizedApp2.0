@@ -30,7 +30,7 @@ class ColorViewController: UIViewController {
         settingsVC.delegate = self
     }
     
-    // MARK: - {rivate func
+    // MARK: - Private func
     private func updateViewColor(with values: (red: Float, green: Float, blue: Float)) {
         let red = CGFloat(values.red)
         let green = CGFloat(values.green)

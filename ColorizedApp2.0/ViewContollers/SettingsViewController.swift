@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
     var sliderValues: (red: Float, green: Float, blue: Float)!
     
     var delegate: SettingsViewControllerDelegate!
-    
+        
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,6 @@ class SettingsViewController: UIViewController {
         setSliderValues()
         setLabels()
         updateColor(of: rgbView)
-        
     }
     
     // MARK: IBActions
