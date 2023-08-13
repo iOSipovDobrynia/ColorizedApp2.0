@@ -20,6 +20,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
+    @IBOutlet var redTextField: UITextField!
+    @IBOutlet var greenTextField: UITextField!
+    @IBOutlet var blueTextField: UITextField!
+    
     // MARK: - Public prop
     var color: UIColor!
     
@@ -33,6 +37,11 @@ class SettingsViewController: UIViewController {
         rgbView.backgroundColor = color
         setValues(for: redSlider, greenSlider, blueSlider)
         setValues(for: redLabel, greenLabel, blueLabel)
+        setValues(for: redTextField, greenTextField, blueTextField)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     // MARK: IBActions
@@ -40,10 +49,13 @@ class SettingsViewController: UIViewController {
         switch sender {
         case redSlider:
             setValues(for: redLabel)
+            setValues(for: redTextField)
         case greenSlider:
             setValues(for: greenLabel)
+            setValues(for: greenTextField)
         default:
             setValues(for: blueLabel)
+            setValues(for: blueTextField)
         }
         updateColor()
     }
@@ -71,9 +83,18 @@ class SettingsViewController: UIViewController {
     private func setValues(for labels: UILabel...) {
         labels.forEach { label in
             switch label {
-            case redLabel: label.text = round(redSlider.value).formatted()
-            case greenLabel: label.text = round(greenSlider.value).formatted()
-            default: label.text = round(blueSlider.value).formatted()
+            case redLabel: label.text = redSlider.stringValue
+            case greenLabel: label.text = greenSlider.stringValue
+            default: label.text = blueSlider.stringValue
+            }
+        }
+    }
+    private func setValues(for textFields: UITextField...) {
+        textFields.forEach { textField in
+            switch textField {
+            case redTextField: textField.text = redSlider.stringValue
+            case greenTextField: textField.text = greenSlider.stringValue
+            default: textField.text = blueSlider.stringValue
             }
         }
     }
@@ -82,6 +103,13 @@ class SettingsViewController: UIViewController {
         let green = CGFloat(greenSlider.value) / 255
         let blue = CGFloat(blueSlider.value) / 255
         rgbView.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+    }
+}
+
+// MARK: - Slider's string value
+extension UISlider {
+    var stringValue: String {
+        round(value).formatted()
     }
 }
 
