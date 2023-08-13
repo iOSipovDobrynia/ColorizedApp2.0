@@ -102,7 +102,12 @@ class SettingsViewController: UIViewController {
         let red = CGFloat(redSlider.value) / 255
         let green = CGFloat(greenSlider.value) / 255
         let blue = CGFloat(blueSlider.value) / 255
-        rgbView.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+        rgbView.backgroundColor = UIColor(
+            red: red,
+            green: green,
+            blue: blue,
+            alpha: 1
+        )
     }
 }
 
