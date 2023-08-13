@@ -12,9 +12,9 @@ class SettingsViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet var rgbView: UIView!
     
-    @IBOutlet var redValueLabel: UILabel!
-    @IBOutlet var greenValueLabel: UILabel!
-    @IBOutlet var blueValueLabel: UILabel!
+    @IBOutlet var redLabel: UILabel!
+    @IBOutlet var greenLabel: UILabel!
+    @IBOutlet var blueLabel: UILabel!
     
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
@@ -31,24 +31,21 @@ class SettingsViewController: UIViewController {
         
         rgbView.layer.cornerRadius = 10
         rgbView.backgroundColor = color
-        setSliderValues()
-        setLabels()
+        setValues(for: redSlider, greenSlider, blueSlider)
+        setValues(for: redLabel, greenLabel, blueLabel)
     }
     
     // MARK: IBActions
-    @IBAction func redSliderAction() {
+    @IBAction func rgbSliderAction(_ sender: UISlider) {
+        switch sender {
+        case redSlider:
+            setValues(for: redLabel)
+        case greenSlider:
+            setValues(for: greenLabel)
+        default:
+            setValues(for: blueLabel)
+        }
         updateColor()
-        redValueLabel.text = round(redSlider.value).formatted()
-    }
-    
-    @IBAction func greenSliderAction() {
-        updateColor()
-        greenValueLabel.text = round(greenSlider.value).formatted()
-    }
-    
-    @IBAction func blueSliderAction() {
-        updateColor()
-        blueValueLabel.text = round(blueSlider.value).formatted()
     }
     
     @IBAction func doneButtonPressed() {
@@ -59,18 +56,26 @@ class SettingsViewController: UIViewController {
     }
     
     // MARK: private methods
-    private func setSliderValues() {
+    private func setValues(for sliders: UISlider...) {
         guard let rgbColor = rgbView.backgroundColor else { return }
-        
         let ciColor = CIColor(color: rgbColor)
-        redSlider.value = Float(ciColor.red) * 255
-        greenSlider.value = Float(ciColor.green) * 255
-        blueSlider.value = Float(ciColor.blue) * 255
+        
+        sliders.forEach { slider in
+            switch slider {
+            case redSlider: slider.value = Float(ciColor.red) * 255
+            case greenSlider: slider.value = Float(ciColor.green) * 255
+            default: slider.value = Float(ciColor.blue) * 255
+            }
+        }
     }
-    private func setLabels() {
-        redValueLabel.text = round(redSlider.value).formatted()
-        greenValueLabel.text = round(greenSlider.value).formatted()
-        blueValueLabel.text = round(blueSlider.value).formatted()
+    private func setValues(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label {
+            case redLabel: label.text = round(redSlider.value).formatted()
+            case greenLabel: label.text = round(greenSlider.value).formatted()
+            default: label.text = round(blueSlider.value).formatted()
+            }
+        }
     }
     private func updateColor() {
         let red = CGFloat(redSlider.value) / 255

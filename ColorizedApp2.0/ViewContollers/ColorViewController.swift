@@ -14,7 +14,7 @@ protocol SettingsViewControllerDelegate {
 class ColorViewController: UIViewController {
     
     // MARK: - Public properties
-    var defualtColor = UIColor(
+    public var defualtColor = UIColor(
         red: CGFloat(191) / 255,
         green: CGFloat(127) / 255,
         blue: CGFloat(63) / 255,

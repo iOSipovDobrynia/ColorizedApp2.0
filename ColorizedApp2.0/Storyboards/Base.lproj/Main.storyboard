@@ -72,7 +72,7 @@
                                                 <rect key="frame" x="100.5" y="0.0" width="181.5" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
                                                 <connections>
-                                                    <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="XF3-oW-68V"/>
+                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="9kf-Yg-lkS"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -102,7 +102,7 @@
                                                 <rect key="frame" x="100.5" y="0.0" width="181.5" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="tzc-bf-mea"/>
+                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="ESv-0V-mAX"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -132,7 +132,7 @@
                                                 <rect key="frame" x="100.5" y="0.0" width="181.5" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                 <connections>
-                                                    <action selector="blueSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="qMg-DQ-ceo"/>
+                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="WUZ-2d-qhl"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -163,12 +163,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blueLabel" destination="czC-nu-euu" id="7oD-2h-EOC"/>
                         <outlet property="blueSlider" destination="816-ue-JVP" id="gep-Zp-C8a"/>
-                        <outlet property="blueValueLabel" destination="czC-nu-euu" id="7oD-2h-EOC"/>
+                        <outlet property="greenLabel" destination="h53-eZ-eRx" id="W29-aJ-9Ee"/>
                         <outlet property="greenSlider" destination="wWA-ag-1r8" id="2iA-tN-gR2"/>
-                        <outlet property="greenValueLabel" destination="h53-eZ-eRx" id="W29-aJ-9Ee"/>
+                        <outlet property="redLabel" destination="P6b-fK-GVK" id="c2R-us-rXP"/>
                         <outlet property="redSlider" destination="Klf-xV-3D9" id="oiq-kF-Mj1"/>
-                        <outlet property="redValueLabel" destination="P6b-fK-GVK" id="c2R-us-rXP"/>
                         <outlet property="rgbView" destination="9B5-Bu-p7e" id="0au-2k-ruO"/>
                     </connections>
                 </viewController>
@@ -182,7 +182,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1rW-a3-RfI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZWA-SF-r19">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
