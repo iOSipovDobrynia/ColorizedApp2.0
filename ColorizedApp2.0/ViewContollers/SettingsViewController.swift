@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var blueSlider: UISlider!
     
     // MARK: - Public prop
-    var sliderValues: (red: Float, green: Float, blue: Float)!
+    var color: UIColor!
     
     var delegate: SettingsViewControllerDelegate!
         
@@ -30,50 +30,53 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         rgbView.layer.cornerRadius = 10
+        rgbView.backgroundColor = color
         setSliderValues()
         setLabels()
-        updateColor(of: rgbView)
     }
     
     // MARK: IBActions
     @IBAction func redSliderAction() {
-        updateColor(of: rgbView)
+        updateColor()
         redValueLabel.text = round(redSlider.value).formatted()
     }
     
     @IBAction func greenSliderAction() {
-        updateColor(of: rgbView)
+        updateColor()
         greenValueLabel.text = round(greenSlider.value).formatted()
     }
     
     @IBAction func blueSliderAction() {
-        updateColor(of: rgbView)
+        updateColor()
         blueValueLabel.text = round(blueSlider.value).formatted()
     }
     
     @IBAction func doneButtonPressed() {
-        delegate.setNewColor(with: (redSlider.value, greenSlider.value, blueSlider.value))
+        guard let rgbColor = rgbView.backgroundColor else { return }
+
+        delegate.setNewColor(with: rgbColor)
         dismiss(animated: true)
     }
     
     // MARK: private methods
-    private func updateColor(of view: UIView) {
-        let red = CGFloat(redSlider.value) / 255
-        let green = CGFloat(greenSlider.value) / 255
-        let blue = CGFloat(blueSlider.value) / 255
-        view.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+    private func setSliderValues() {
+        guard let rgbColor = rgbView.backgroundColor else { return }
+        
+        let ciColor = CIColor(color: rgbColor)
+        redSlider.value = Float(ciColor.red) * 255
+        greenSlider.value = Float(ciColor.green) * 255
+        blueSlider.value = Float(ciColor.blue) * 255
     }
-    
     private func setLabels() {
         redValueLabel.text = round(redSlider.value).formatted()
         greenValueLabel.text = round(greenSlider.value).formatted()
         blueValueLabel.text = round(blueSlider.value).formatted()
     }
-    
-    private func setSliderValues() {
-        redSlider.setValue(sliderValues.red, animated: false)
-        greenSlider.setValue(sliderValues.green, animated: false)
-        blueSlider.setValue(sliderValues.blue, animated: false)
+    private func updateColor() {
+        let red = CGFloat(redSlider.value) / 255
+        let green = CGFloat(greenSlider.value) / 255
+        let blue = CGFloat(blueSlider.value) / 255
+        rgbView.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
 }
 
